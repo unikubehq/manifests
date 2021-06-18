@@ -1,0 +1,14 @@
+# unikube switch configuration file
+apps:
+  manifests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    deployment: manifests-http
+    # specify the command to start the container with
+    command: /usr/src/run_app.sh
+    env:
+      - AUTO_RELOAD: true
+    # specify to be mounted volumes for code hot-reloading
+    volumes:
+      - ./src:/app
