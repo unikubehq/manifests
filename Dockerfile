@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN mkdir /install
 WORKDIR /install
-COPY requirements/requirements.txt /requirements.txt
+COPY requirements.txt /requirements.txt
 RUN pip install --prefix=/install -r /requirements.txt
 
 #
