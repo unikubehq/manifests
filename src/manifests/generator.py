@@ -34,6 +34,7 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
     {
       environment(id: $environment){
         id
+        namespace
         deck {
           hash
           project {
@@ -43,7 +44,6 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
             accessUsername
             specType
           }
-          namespace
         }
         sopsCredentials {
           __typename
@@ -83,7 +83,7 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
         decks = parser.get_deck_data()
         # get the deck in question from the repo
         deck = next(x for x in decks if x.hash == environment["deck"]["hash"])
-        deck.namespace = environment["deck"]["namespace"]
+        deck.namespace = environment["namespace"]
         if environment.get("sopsCredentials"):
             sops = environment.get("sopsCredentials")
             if sops["__typename"] == "AWSKMSNode":
