@@ -57,6 +57,9 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
           }
         }
         valuesPath
+        helmOverrides {
+          overrides
+        }
       }
     }
     """
@@ -106,7 +109,11 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
                     type=SopsProviderType.PGP,
                 )
 
-        result = parser.render((deck, RenderEnvironment(values_path=environment["valuesPath"], specs_data=[])))
+        render_environment = RenderEnvironment(values_path=environment["valuesPath"], specs_data=[])
+        if environment["helmOverrides"]:
+            render_environment.update_values_from_yaml(environment["helmOverrides"]["overrides"])
+        result = parser.render((deck, render_environment))
+
         _, updated_environment = result[0]
         return json(
             [
