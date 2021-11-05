@@ -110,7 +110,7 @@ async def generate_manifests(request: Request, environment_id: str) -> BaseHTTPR
                 )
 
         render_environment = RenderEnvironment(values_path=environment["valuesPath"], specs_data=[])
-        if environment["helmOverrides"]:
+        if environment["helmOverrides"] and environment["helmOverrides"]["overrides"]:
             render_environment.update_values_from_yaml(environment["helmOverrides"]["overrides"])
         result = parser.render((deck, render_environment))
 
