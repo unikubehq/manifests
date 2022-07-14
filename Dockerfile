@@ -14,7 +14,7 @@ RUN pip install --prefix=/install -r /requirements.txt
 # Production container
 #
 FROM base
-RUN curl https://get.helm.sh/helm-v3.1.1-linux-amd64.tar.gz | tar xvz \
+RUN curl https://get.helm.sh/helm-v3.9.1-linux-amd64.tar.gz | tar xvz \
     && mv linux-amd64/helm /usr/local/bin/helm
 
 RUN curl -L https://github.com/mozilla/sops/releases/download/v3.7.1/sops_3.7.1_amd64.deb --output sops_3.7.1_amd64.deb \
