@@ -1,7 +1,7 @@
 # unikube commons
 git+https://github.com/unikubehq/commons.git@1.7.1
 
-sanic~=20.12.0
+sanic~=22.6.1
 Sanic-Cors~=0.10
 sentry-sdk~=0.19.5
 requests~=2.25.1
