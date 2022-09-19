@@ -6,4 +6,4 @@ Sanic-Cors~=0.10
 sentry-sdk~=0.19.5
 requests~=2.25.1
 gql~=2.0.0
-PyJWT~=2.0.0
+PyJWT~=2.5.0
